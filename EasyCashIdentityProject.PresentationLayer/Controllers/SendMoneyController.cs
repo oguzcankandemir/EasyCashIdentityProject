@@ -31,7 +31,7 @@ namespace EasyCashIdentityProject.PresentationLayer.Controllers
             var user = await _userManager.FindByNameAsync(User.Identity.Name);
             var receiverAccountNumberID = context.CustomerAccounts.Where(x => x.CustomerAccountNumber == sendMoneyForCustomerAccountProcessDto.ReceiverAccountNumber).Select(y => y.CustomerAccountID).FirstOrDefault();
 
-            sendMoneyForCustomerAccountProcessDto.SenderID = user.Id;
+            sendMoneyForCustomerAccountProcessDto.SenderID = user.Id; //gönderici
             sendMoneyForCustomerAccountProcessDto.ProcessDate = Convert.ToDateTime(DateTime.Now.ToShortDateString());
             sendMoneyForCustomerAccountProcessDto.ProcessType = "Havale";
             sendMoneyForCustomerAccountProcessDto.ReceiverID = receiverAccountNumberID;

@@ -23,7 +23,7 @@ namespace EasyCashIdentityProject.PresentationLayer.Controllers
         [HttpPost]
         public async Task<IActionResult> Index(LoginViewModel loginViewModel)
         {
-            var result = await _signInManager.PasswordSignInAsync(loginViewModel.Username, loginViewModel.Password, false, true);
+            var result = await _signInManager.PasswordSignInAsync(loginViewModel.Username, loginViewModel.Password, false, true);//lock işlemi true 5 defa yanlış
             if (result.Succeeded)
             {
                 var user = await _userManager.FindByNameAsync(loginViewModel.Username);
