@@ -29,14 +29,21 @@ namespace EasyCashIdentityProject.PresentationLayer.Controllers
             var context = new Context();
 
             var user = await _userManager.FindByNameAsync(User.Identity.Name);
-            var receiverAccountNumberID = context.CustomerAccounts.Where(x => x.CustomerAccountNumber == sendMoneyForCustomerAccountProcessDto.ReceiverAccountNumber).Select(y => y.CustomerAccountID).FirstOrDefault();
+            var receiverAccountNumberID = context.CustomerAccounts.Where(x => x.CustomerAccountNumber ==
+            sendMoneyForCustomerAccountProcessDto.ReceiverAccountNumber).Select(y => y.CustomerAccountID).FirstOrDefault();
 
             sendMoneyForCustomerAccountProcessDto.SenderID = user.Id; //gönderici
             sendMoneyForCustomerAccountProcessDto.ProcessDate = Convert.ToDateTime(DateTime.Now.ToShortDateString());
             sendMoneyForCustomerAccountProcessDto.ProcessType = "Havale";
             sendMoneyForCustomerAccountProcessDto.ReceiverID = receiverAccountNumberID;
 
-          //  _customerAccountProcessService.TInsert();
+            var values = new CustomerAccountProcess();
+            values.ProcessDate = Convert.ToDateTime(DateTime.Now.ToShortDateString());
+            values.SenderID = 1;
+            values.ProcessType = "Havale";
+            values.ReceiverID = receiverAccountNumberID;
+            values.Amount = sendMoneyForCustomerAccountProcessDto.Amount;
+            _customerAccountProcessService.TInsert(values);
 
             return RedirectToAction("Index", "Deneme");
         }
