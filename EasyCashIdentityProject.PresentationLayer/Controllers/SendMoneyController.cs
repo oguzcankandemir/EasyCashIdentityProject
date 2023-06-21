@@ -37,7 +37,7 @@ namespace EasyCashIdentityProject.PresentationLayer.Controllers
            
             var values = new CustomerAccountProcess();
             values.ProcessDate = Convert.ToDateTime(DateTime.Now.ToShortDateString());
-            values.SenderID = senderAccountNumberID;
+            values.SenderID = senderAccountNumberID;//Transfer Operation
             values.ProcessType = "Havale";
             values.ReceiverID = receiverAccountNumberID;
             values.Amount = sendMoneyForCustomerAccountProcessDto.Amount;
