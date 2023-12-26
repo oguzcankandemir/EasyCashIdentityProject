@@ -6,7 +6,6 @@ namespace EasyCashIdentityProject.PresentationLayer.Controllers
     {
         public async Task<IActionResult> Index()
         {
-
             #region
 
 
@@ -65,8 +64,6 @@ namespace EasyCashIdentityProject.PresentationLayer.Controllers
                 var body2 = await response3.Content.ReadAsStringAsync();
                 ViewBag.GbpToTry = body2;
             }
-
-
             return View();
         }
     }
